@@ -5,7 +5,7 @@ All documentation created during the SDLC pipeline MUST be nested under a master
 
 ```text
 📁 [PROJECT] Automated Documentation Sync Pipeline
- ├── 📄 01-Requirements Spec (requirements.md)
- ├── 📄 02-System Architecture (architecture.md)
- ├── 📄 03-Design Review Findings (design-review.md)
- └── 📄 04-Implementation Plan (impl-plan.md)
+ ├── 📄 01-Requirements Spec (generatedDocs/requirements.md)
+ ├── 📄 02-System Architecture (generatedDocs/architecture.md)
+ ├── 📄 03-Design Review Findings (generatedDocs/design-review.md)
+ └── 📄 04-Implementation Plan (generatedDocs/impl-plan.md)

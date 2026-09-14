@@ -19,10 +19,10 @@ test('shouldRunPipeline skips unrelated files', () => {
 
 test('shouldRunPipeline ignores generated documentation artifacts', () => {
   const result = shouldRunPipeline([
-    'requirements.md',
-    'architecture.md',
-    'design-review.md',
-    'impl-plan.md',
+    'generatedDocs/requirements.md',
+    'generatedDocs/architecture.md',
+    'generatedDocs/design-review.md',
+    'generatedDocs/impl-plan.md',
   ]);
 
   assert.equal(result.shouldRun, false);

@@ -37,3 +37,16 @@ test('loadConfig normalizes the Atlassian host', () => {
 
   assert.equal(config.atlassianHost, 'https://example.atlassian.net');
 });
+
+test('loadConfig defaults verification output to generatedDocs', () => {
+  const config = loadConfig({
+    ATLASSIAN_HOST: 'https://example.atlassian.net',
+    ATLASSIAN_EMAIL: 'user@example.com',
+    ATLASSIAN_API_TOKEN: 'token',
+    CONFLUENCE_SPACE_KEY: 'DOCSYNC',
+    JIRA_PROJECT_KEY: 'DOCSYNC',
+    JIRA_ISSUE_KEY: 'DOCSYNC-2',
+  });
+
+  assert.equal(config.verifyResultsPath, 'generatedDocs/verify-results.txt');
+});

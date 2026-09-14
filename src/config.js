@@ -40,7 +40,7 @@ function loadConfig(env = process.env) {
     jiraProjectKey: env.JIRA_PROJECT_KEY,
     jiraIssueKey: env.JIRA_ISSUE_KEY,
     githubToken: env.GITHUB_TOKEN || null,
-    verifyResultsPath: env.VERIFY_RESULTS_PATH || 'verify-results.txt',
+    verifyResultsPath: env.VERIFY_RESULTS_PATH || 'generatedDocs/verify-results.txt',
   };
 }
 

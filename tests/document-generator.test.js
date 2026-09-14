@@ -17,10 +17,10 @@ test('generateDocumentSet returns the four required documents', () => {
 
   assert.equal(documents.length, 4);
   assert.deepEqual(documents.map((document) => document.path), [
-    'requirements.md',
-    'architecture.md',
-    'design-review.md',
-    'impl-plan.md',
+    'generatedDocs/requirements.md',
+    'generatedDocs/architecture.md',
+    'generatedDocs/design-review.md',
+    'generatedDocs/impl-plan.md',
   ]);
 });
 

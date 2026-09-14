@@ -33,12 +33,12 @@ The current repository is minimal, so the architecture is intentionally lightwei
 
 ### 4. Documentation Generator
 
-* Produces the root Markdown files in the repository:
+* Produces the root Markdown files in `generatedDocs/`:
 
-  * `requirements.md`
-  * `architecture.md`
-  * `design-review.md`
-  * `impl-plan.md`
+  * `generatedDocs/requirements.md`
+  * `generatedDocs/architecture.md`
+  * `generatedDocs/design-review.md`
+  * `generatedDocs/impl-plan.md`
 
 * Keeps the documents aligned with the Jira story and the current pipeline state.
 
@@ -52,7 +52,7 @@ The current repository is minimal, so the architecture is intentionally lightwei
 
 * Runs unit tests for happy-path and failure-path coverage.
 * Uses Playwright MCP to inspect the live Confluence page tree.
-* Writes the run output to `verify-results.txt`.
+* Writes the run output to `generatedDocs/verify-results.txt`.
 
 ### 7. PR Evidence Packager
 
@@ -71,7 +71,7 @@ flowchart TD
   E --> F[Upsert child pages]
   F --> G[Run unit tests]
   G --> H[Inspect Confluence page tree with Playwright]
-  H --> I[Write verify-results.txt]
+  H --> I[Write generatedDocs/verify-results.txt]
   I --> J[Package PR evidence]
 ```
 
@@ -92,7 +92,7 @@ sequenceDiagram
   Pipeline->>Confluence: resolve or create tree root
   Pipeline->>Confluence: upsert 01-04 pages
   Pipeline->>Verify: run tests and browser verification
-  Verify-->>Pipeline: verify-results.txt
+  Verify-->>Pipeline: generatedDocs/verify-results.txt
   Pipeline->>GitHub: assemble PR summary and evidence
 ```
 

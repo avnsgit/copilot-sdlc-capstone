@@ -22,7 +22,7 @@ The architecture is acceptable for the current scope, but it needs explicit secu
 
 * Severity: Medium
 * Risk: Environment files and verification logs could be accidentally committed.
-* Recommendation: Enforce `.gitignore` coverage for `.env`, `node_modules/`, and `verify-results.txt`, and run the secret guard hook before staging code.
+* Recommendation: Enforce `.gitignore` coverage for `.env`, `node_modules/`, and `generatedDocs/verify-results.txt`, and run the secret guard hook before staging code.
 
 ## Required Architecture Updates
 
