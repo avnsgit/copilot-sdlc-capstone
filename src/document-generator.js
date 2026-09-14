@@ -306,35 +306,9 @@ function generateImplementationPlanMarkdown() {
   ].join('\n');
 }
 
-function generateDocumentSet(context) {
-  return [
-    {
-      path: 'requirements.md',
-      title: '01-Requirements Spec',
-      body: generateRequirementsMarkdown(context),
-    },
-    {
-      path: 'architecture.md',
-      title: '02-System Architecture',
-      body: generateArchitectureMarkdown(context),
-    },
-    {
-      path: 'design-review.md',
-      title: '03-Design Review Findings',
-      body: generateDesignReviewMarkdown(),
-    },
-    {
-      path: 'impl-plan.md',
-      title: '04-Implementation Plan',
-      body: generateImplementationPlanMarkdown(),
-    },
-  ];
-}
-
 module.exports = {
   generateRequirementsMarkdown,
   generateArchitectureMarkdown,
   generateDesignReviewMarkdown,
   generateImplementationPlanMarkdown,
-  generateDocumentSet,
 };
