@@ -11,4 +11,18 @@ TAP version 13
 [Verification Summary]
 - Unit tests: PASSED
 - Confluence tree check: PASSED via Atlassian MCP descendants for the root page and child pages 01-04
-- Playwright browser verification: NOT RUN in this environment because the browser launch step was skipped
+- Playwright CLI verification: PASSED on 2026-09-14 with authenticated Confluence tree API checks
+
+[2026-09-14T16:44:00+05:30] npx playwright test --reporter=list
+Running 1 test using 1 worker
+
+	✓  1 …12:1 › Confluence tree exposes the canonical root and child pages (1.3s)
+
+	1 passed (2.0s)
+
+[Playwright Summary]
+- Browser: Chromium
+- Mode: headless CLI
+- Environment: loaded from .env via dotenv
+- Check type: authenticated REST API verification of the live Confluence root page and canonical child pages
+- Result: PASSED
