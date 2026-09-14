@@ -21,14 +21,14 @@ Deliver a modular Node.js pipeline that detects repository changes, generates SD
 ### Phase 3: Documentation Pipeline
 
 7. Implement the codebase change detector or pipeline trigger adapter.
-8. Implement document generation for `requirements.md`, `architecture.md`, `design-review.md`, and `impl-plan.md`.
+8. Implement document generation for `generatedDocs/requirements.md`, `generatedDocs/architecture.md`, `generatedDocs/design-review.md`, and `generatedDocs/impl-plan.md`.
 9. Add idempotent Confluence page upsert logic for the root page and four child pages.
 
 ### Phase 4: Verification and Evidence
 
 10. Add unit tests for happy paths and failure paths, including missing credentials and missing Confluence targets.
 11. Implement Playwright MCP verification for the live Confluence tree.
-12. Write run output to `verify-results.txt`.
+12. Write run output to `generatedDocs/verify-results.txt`.
 
 ### Phase 5: PR Packaging
 
@@ -45,15 +45,15 @@ flowchart TD
   D --> E[Confluence upsert]
   E --> F[Unit tests]
   F --> G[Playwright verification]
-  G --> H[verify-results.txt]
+  G --> H[generatedDocs/verify-results.txt]
   H --> I[GitHub PR packaging]
 ```
 
 ## Deliverables
 
-* Root Markdown files kept current in the repository.
+* Root Markdown files kept current in `generatedDocs/`.
 * Confluence tree rooted at `[PROJECT] Automated Documentation Sync Pipeline`.
-* Verification logs exported to `verify-results.txt`.
+* Verification logs exported to `generatedDocs/verify-results.txt`.
 * A PR-ready summary with testing evidence.
 
 ## Success Criteria

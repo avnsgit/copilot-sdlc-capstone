@@ -9,4 +9,4 @@
 - If a secret pattern is detected, abort the action immediately and report the error.
 
 ## 3. Git Exclusion
-- Confirm that `.env`, `node_modules/`, and test output logs (`verify-results.txt`) are listed in `.gitignore`.
+- Confirm that `.env`, `node_modules/`, and test output logs (`generatedDocs/verify-results.txt`) are listed in `.gitignore`.

@@ -3,7 +3,7 @@
 
 echo "🔍 Verifying SDLC documentation integrity..."
 
-REQUIRED_FILES=("requirements.md" "architecture.md" "design-review.md" "impl-plan.md")
+REQUIRED_FILES=("generatedDocs/requirements.md" "generatedDocs/architecture.md" "generatedDocs/design-review.md" "generatedDocs/impl-plan.md")
 
 for file in "${REQUIRED_FILES[@]}"; do
     if [ ! -f "$file" ]; then
