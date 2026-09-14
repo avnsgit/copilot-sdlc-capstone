@@ -1,0 +1,14 @@
+[2026-09-14T16:30:21.4294094+05:30] npm test
+> copilot-sdlc-capstone@1.0.0 test
+> node --test
+
+TAP version 13
+# tests 11
+# pass 11
+# fail 0
+# duration_ms 155.1067
+
+[Verification Summary]
+- Unit tests: PASSED
+- Confluence tree check: PASSED via Atlassian MCP descendants for the root page and child pages 01-04
+- Playwright browser verification: NOT RUN in this environment because the browser launch step was skipped
