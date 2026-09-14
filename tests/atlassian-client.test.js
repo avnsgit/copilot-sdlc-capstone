@@ -28,3 +28,56 @@ test('request throws RemoteError for non-2xx responses', async () => {
     RemoteError,
   );
 });
+
+test('findPageByTitle refreshes the current page version before updates', async () => {
+  const requestedUrls = [];
+  const client = createAtlassianClient({
+    baseUrl: 'https://example.atlassian.net',
+    email: 'user@example.com',
+    apiToken: 'token',
+    fetchImpl: async (url) => {
+      requestedUrls.push(url);
+
+      if (url.includes('/search?')) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({
+            results: [
+              {
+                content: {
+                  id: '123',
+                  title: '01-Requirements Spec',
+                },
+              },
+            ],
+          }),
+          headers: { get: () => 'application/json' },
+        };
+      }
+
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          id: '123',
+          title: '01-Requirements Spec',
+          version: {
+            number: 7,
+          },
+        }),
+        headers: { get: () => 'application/json' },
+      };
+    },
+  });
+
+  const page = await client.findPageByTitle('DOCSYNC', '11862018', '01-Requirements Spec');
+
+  assert.deepEqual(page, {
+    id: '123',
+    title: '01-Requirements Spec',
+    version: 7,
+  });
+  assert.equal(requestedUrls.length, 2);
+  assert.match(requestedUrls[1], /\/wiki\/rest\/api\/content\/123\?expand=version$/);
+});
