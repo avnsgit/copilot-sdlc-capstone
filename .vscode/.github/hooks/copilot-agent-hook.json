@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "preStepImplementation": {
+      "command": "bash .github/hooks/pre-commit-secret-guard.sh",
+      "description": "Scans context for hardcoded API keys before generating code."
+    },
+    "postStepImplementation": {
+      "command": "bash .github/hooks/post-impl-doc-check.sh",
+      "description": "Verifies all required markdown documentation files exist."
+    }
+  }
+}
