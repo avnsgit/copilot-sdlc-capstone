@@ -17,6 +17,18 @@ test('shouldRunPipeline skips unrelated files', () => {
   assert.deepEqual(result.matchedFiles, []);
 });
 
+test('shouldRunPipeline ignores generated documentation artifacts', () => {
+  const result = shouldRunPipeline([
+    'requirements.md',
+    'architecture.md',
+    'design-review.md',
+    'impl-plan.md',
+  ]);
+
+  assert.equal(result.shouldRun, false);
+  assert.deepEqual(result.matchedFiles, []);
+});
+
 test('collectChangedFilesFromGit parses git status output', () => {
   const changedFiles = collectChangedFilesFromGit({
     execImpl: () => '?? src/new-file.js\n M README.md\n',

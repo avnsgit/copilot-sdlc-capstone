@@ -4,10 +4,6 @@ const RELEVANT_PATTERNS = [
   /^src\//,
   /^tests\//,
   /^\.github\//,
-  /^requirements\.md$/,
-  /^architecture\.md$/,
-  /^design-review\.md$/,
-  /^impl-plan\.md$/,
   /^package\.json$/,
   /^README\.md$/,
 ];
