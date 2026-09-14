@@ -156,11 +156,12 @@ function createAtlassianClient({ baseUrl, email, apiToken, fetchImpl = fetch }) 
     }
 
     const content = firstEntry.content || firstEntry;
+    const page = await request(`/wiki/rest/api/content/${content.id}?expand=version`);
 
     return {
-      id: content.id,
-      title: content.title,
-      version: content.version?.number || 1,
+      id: page.id || content.id,
+      title: page.title || content.title,
+      version: page.version?.number || content.version?.number || 1,
     };
   }
 

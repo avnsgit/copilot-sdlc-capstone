@@ -15,7 +15,7 @@ The implementation must cover the full codebase-change detection and automation 
 
 ## Functional Requirements
 
-1. The system must read `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`, `CONFLUENCE_SPACE_KEY`, `JIRA_PROJECT_KEY`, `JIRA_ISSUE_KEY`, and `GITHUB_TOKEN` from local environment variables.
+1. The system must read `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`, `CONFLUENCE_SPACE_KEY`, `JIRA_PROJECT_KEY`, and `JIRA_ISSUE_KEY` from local environment variables. `GITHUB_TOKEN` is optional when GitHub PR automation is handled by MCP.
 2. The system must not hardcode secrets, tokens, or API keys in source files or documentation.
 3. The pipeline must detect codebase changes and use that trigger to start the automation flow.
 4. The pipeline must generate and maintain these root Markdown documents:

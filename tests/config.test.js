@@ -11,6 +11,19 @@ test('loadConfig validates required environment variables', () => {
   );
 });
 
+test('loadConfig allows GitHub token to be omitted when MCP handles PR automation', () => {
+  const config = loadConfig({
+    ATLASSIAN_HOST: 'https://example.atlassian.net',
+    ATLASSIAN_EMAIL: 'user@example.com',
+    ATLASSIAN_API_TOKEN: 'token',
+    CONFLUENCE_SPACE_KEY: 'DOCSYNC',
+    JIRA_PROJECT_KEY: 'DOCSYNC',
+    JIRA_ISSUE_KEY: 'DOCSYNC-2',
+  });
+
+  assert.equal(config.githubToken, null);
+});
+
 test('loadConfig normalizes the Atlassian host', () => {
   const config = loadConfig({
     ATLASSIAN_HOST: 'https://example.atlassian.net/wiki',
