@@ -7,7 +7,6 @@ const REQUIRED_KEYS = [
   'CONFLUENCE_SPACE_KEY',
   'JIRA_PROJECT_KEY',
   'JIRA_ISSUE_KEY',
-  'GITHUB_TOKEN',
 ];
 
 function normalizeHost(host) {
@@ -40,7 +39,7 @@ function loadConfig(env = process.env) {
     confluenceSpaceKey: env.CONFLUENCE_SPACE_KEY,
     jiraProjectKey: env.JIRA_PROJECT_KEY,
     jiraIssueKey: env.JIRA_ISSUE_KEY,
-    githubToken: env.GITHUB_TOKEN,
+    githubToken: env.GITHUB_TOKEN || null,
     verifyResultsPath: env.VERIFY_RESULTS_PATH || 'verify-results.txt',
   };
 }

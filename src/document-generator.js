@@ -17,7 +17,7 @@ function generateRequirementsMarkdown(context) {
     '',
     '## Functional Requirements',
     '',
-    '1. The system must read `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`, `CONFLUENCE_SPACE_KEY`, `JIRA_PROJECT_KEY`, `JIRA_ISSUE_KEY`, and `GITHUB_TOKEN` from local environment variables.',
+    '1. The system must read `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`, `CONFLUENCE_SPACE_KEY`, `JIRA_PROJECT_KEY`, and `JIRA_ISSUE_KEY` from local environment variables. `GITHUB_TOKEN` is optional when GitHub PR automation is handled by MCP.',
     '2. The system must not hardcode secrets, tokens, or API keys in source files or documentation.',
     '3. The pipeline must detect codebase changes and use that trigger to start the automation flow.',
     '4. The pipeline must generate and maintain these root Markdown documents:',
@@ -306,35 +306,9 @@ function generateImplementationPlanMarkdown() {
   ].join('\n');
 }
 
-function generateDocumentSet(context) {
-  return [
-    {
-      path: 'requirements.md',
-      title: '01-Requirements Spec',
-      body: generateRequirementsMarkdown(context),
-    },
-    {
-      path: 'architecture.md',
-      title: '02-System Architecture',
-      body: generateArchitectureMarkdown(context),
-    },
-    {
-      path: 'design-review.md',
-      title: '03-Design Review Findings',
-      body: generateDesignReviewMarkdown(),
-    },
-    {
-      path: 'impl-plan.md',
-      title: '04-Implementation Plan',
-      body: generateImplementationPlanMarkdown(),
-    },
-  ];
-}
-
 module.exports = {
   generateRequirementsMarkdown,
   generateArchitectureMarkdown,
   generateDesignReviewMarkdown,
   generateImplementationPlanMarkdown,
-  generateDocumentSet,
 };
