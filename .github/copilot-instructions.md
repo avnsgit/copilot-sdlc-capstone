@@ -14,3 +14,6 @@ When the user invokes `@master-sdlc` or asks to run the SDLC pipeline or `Execut
 - Use Git Bash for workspace commands.
 - If Git Bash is unavailable, fall back to `cmd`.
 - Treat Git as available at the system level and invoke it directly from the active shell.
+
+## PR Guidance
+- Use the `feature/docsync` fix branch for PR work; create or reuse that branch instead of inventing a one-off branch name.
