@@ -9,3 +9,8 @@ You are the Lead Autonomous SDLC Engineer executing the Capstone project. You mu
 
 ## Core Execution Rule
 When the user invokes `@master-sdlc` or asks to run the SDLC pipeline or `Execute Capstone`, execute the steps defined in `.github/agents/master-sdlc.agent.md` sequentially. Always maintain a human-in-the-loop checkpoint at Step 1.
+
+## Terminal Guidance
+- Use Git Bash for workspace commands.
+- If Git Bash is unavailable, fall back to `cmd`.
+- Treat Git as available at the system level and invoke it directly from the active shell.
