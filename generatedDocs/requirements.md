@@ -11,7 +11,7 @@ Build an automated pipeline that detects codebase changes, generates SDLC docume
 
 ## Scope
 
-The implementation must cover the full codebase-change detection and automation trigger path, not only the documentation sync layer. The pipeline should react to repository changes, generate the required documents, publish them to Confluence, verify the rendered result, and prepare pull request evidence.
+For this run, the implementation focus is documentation generation, Confluence synchronization, and verification evidence. Runtime code changes and PR automation remain part of the overall story, but the current step should keep the working set centered on docs plus verification.
 
 ## Functional Requirements
 
@@ -36,11 +36,12 @@ The implementation must cover the full codebase-change detection and automation 
 
 8. Re-running the pipeline must update existing pages instead of creating duplicates.
 9. The synchronization flow must handle missing fields and malformed input with explicit error messages.
-10. The synchronization flow must treat API rate limits, network failures, `404 Not Found`, and `500 Server Error` responses as fatal for the current run after logging the failure.
-11. The verification step must run unit tests for happy paths and failure cases, including missing credentials and missing Confluence targets.
-12. The verification step must use Playwright MCP to inspect the live Confluence page tree and confirm the page titles and hierarchy.
-13. The pipeline must export execution logs to `generatedDocs/verify-results.txt`.
-14. The pipeline must create a GitHub pull request containing the summary, change log, test evidence, and reviewer checklist.
+10. The synchronization flow must retry transient API rate limits and network failures before failing the current run with explicit diagnostics.
+11. The synchronization flow must still fail the current run for unrecoverable `404 Not Found` or `500 Server Error` responses after logging the failure.
+12. The verification step must run unit tests for happy paths and failure cases, including missing credentials and missing Confluence targets.
+13. The verification step must use Playwright MCP to inspect the live Confluence page tree and confirm the page titles and hierarchy.
+14. The pipeline must export execution logs to `generatedDocs/verify-results.txt`.
+15. The pipeline must create a GitHub pull request containing the summary, change log, test evidence, and reviewer checklist.
 
 ## Non-Functional Requirements
 
