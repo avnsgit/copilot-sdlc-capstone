@@ -2,16 +2,19 @@
 
 ## Overview
 
-The repository will implement a modular Node.js pipeline that detects repository changes, generates SDLC documentation, synchronizes the documentation tree to Confluence, verifies the published pages, and prepares evidence for pull request automation.
+The repository will implement a modular Node.js pipeline that detects repository changes, generates SDLC documentation, synchronizes the documentation tree to Confluence, and verifies the published pages.
+
+For this run, the implementation stays centered on documentation generation, Confluence synchronization, and verification evidence. Pull request automation remains part of the broader story, but the working slice should stay narrow and deterministic.
 
 The current repository is minimal, so the architecture is intentionally lightweight and layered around a small set of responsibilities rather than a large framework.
 
 ## Design Goals
 
-1. Keep the workflow deterministic and idempotent.
-2. Fail safely after logging when external services are unavailable.
-3. Minimize duplicate Confluence pages across reruns.
-4. Separate change detection, document generation, publishing, verification, and PR packaging into distinct modules.
+1. Keep zero-trust secret handling and log redaction as first-class constraints.
+2. Keep the workflow deterministic and idempotent.
+3. Retry transient failures before failing the run, but still stop on unrecoverable external errors.
+4. Minimize duplicate Confluence pages across reruns.
+5. Separate change detection, document generation, publishing, verification, and PR packaging into distinct modules.
 
 ## Proposed Components
 
@@ -47,6 +50,7 @@ The current repository is minimal, so the architecture is intentionally lightwei
 * Resolves or creates the root page `[PROJECT] Automated Documentation Sync Pipeline`.
 * Creates or updates the four child pages under the root page.
 * Uses page identity checks so reruns update existing pages instead of duplicating them.
+* Retries transient rate limits and network failures before surfacing a fatal error.
 
 ### 6. Verification Runner
 
@@ -98,7 +102,9 @@ sequenceDiagram
 
 ## Failure Handling Model
 
-* Missing config, malformed payloads, API rate limits, network failures, `404 Not Found`, and `500 Server Error` responses are treated as fatal for the current run after logging.
+* Missing config and malformed payloads are treated as immediate fatal configuration errors after logging.
+* API rate limits and network failures should be retried before failing the current run if the retries do not succeed.
+* `404 Not Found` and `500 Server Error` responses are treated as fatal for the current run after logging.
 * The pipeline should not continue after a fatal external dependency failure.
 * Each module should return explicit errors so the caller can distinguish configuration issues from publishing or verification failures.
 * The shared Atlassian client should be the only place that formats remote requests and remote error details.
